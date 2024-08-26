@@ -1,1 +1,1 @@
-from .main_env import MainEnv
+from .main_env import FintechAppDRLEnv
