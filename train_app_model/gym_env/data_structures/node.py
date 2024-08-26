@@ -1,12 +1,12 @@
-
+from enum import EnumType
 class Node:
     
-    def __init__(self,name:str,number:int,is_wrong:bool,id:int) -> None:
+    def __init__(self,name:str,number:int,node_type:EnumType,id:int) -> None:
         self.__name = name
         self.__id = id
         self.__children = []
         self.__number = number
-        self.__is_wrong = is_wrong
+        self.__node_type = node_type
         self.__parent : 'Node'= None
     
     @property
@@ -33,7 +33,7 @@ class Node:
     @property
     def id(self):
         return self.__id
-    
+
     @property
-    def __bool__(self):
-        return self.__is_wrong
+    def color(self):
+        return self.__node_type.value
