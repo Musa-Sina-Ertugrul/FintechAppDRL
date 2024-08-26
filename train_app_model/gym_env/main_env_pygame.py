@@ -1,7 +1,5 @@
 import pygame as pg
 import numpy as np
-from itertools import repeat
-import gymnasium as gym
 from gym_env.data_structures import (
     DrawableNode,
     NodeType,

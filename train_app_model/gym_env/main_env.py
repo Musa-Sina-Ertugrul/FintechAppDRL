@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from itertools import count
 from gym_env.data_structures import Node, NodeType, DrawableNode
-from . import MainEnv
+from main_env_pygame import MainEnv
 
 
 class FintechAppDRLEnv(gym.Env):

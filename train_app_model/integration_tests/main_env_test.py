@@ -7,8 +7,9 @@ pg.init()
 import sys
 
 sys.path.append("/home/musasina/projects/FintechAppDRL/train_app_model")
+sys.path.append("/home/musasina/projects/FintechAppDRL/train_app_model/gym_env")
 from gym_env.data_structures import DrawableNode
-from gym_env import MainEnv
+from gym_env.main_env_pygame import MainEnv
 from gym_env.data_structures.node_type_n_consts import NodeType
 
 screen = pg.display.set_mode((1280, 720))
