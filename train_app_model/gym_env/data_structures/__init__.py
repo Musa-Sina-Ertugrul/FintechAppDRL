@@ -1,3 +1,4 @@
+from .node import Node
 from .drawable_node import DrawableNode
 from .node_type_n_consts import (
     ELLIPSE_HEIGHT,
