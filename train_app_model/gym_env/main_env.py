@@ -35,28 +35,19 @@ class MainEnv:
                 case _:
                     x, y = next(points_iter)
                     node.draw(x - ELLIPSE_WIDTH // 2, y - ELLIPSE_HEIGHT // 2)
-                    print(node.color, " ", x, " ", y)
 
     def draw(self, nodes: list[DrawableNode]) -> None:
         points = self._calculate_points(len(nodes) - 1)
         self.__draw_lines(iter(points))
         self.__draw_nodes(iter(nodes), iter(points))
 
-    def __correct_coordinates_for_center(
-        self, x: int, y: int, degree: float
-    ) -> tuple[float]:
-        return x - (ELLIPSE_WIDTH // 2) * np.cos(degree), y - (
-            ELLIPSE_HEIGHT // 2
-        ) * np.sin(degree)
-
     def _calculate_points(self, node_count: int) -> list[tuple[float, float]]:
         self.__check_node_count(node_count)
-        step_degree = 360 / node_count
+        step_degree = (360 / node_count) * np.pi / 180
         x_values = self.__calculate_circle_x_values(node_count, step_degree)
         y_values = self.__calculate_circle_y_values(node_count, step_degree)
         packed_coordinates = []
         for x, y in zip(x_values, y_values):
-            # x,y = self.__correct_coordinates_for_center(x,y,i*step_degree)
             packed_coordinates.append((x, y))
         return packed_coordinates
 

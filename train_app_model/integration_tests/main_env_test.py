@@ -25,7 +25,7 @@ while running:
         if event.type == pg.QUIT:
             running = False
     screen.fill("white")
-    main_env.draw([node_current, node_true, node_wrong])
+    main_env.draw([node_current, node_true, node_wrong, node_true, node_wrong])
     pg.display.flip()
     clock.tick(60)
 
