@@ -1,4 +1,5 @@
 import pygame as pg
+pg.init()
 import numpy as np
 from gym_env.data_structures import (
     DrawableNode,
@@ -31,8 +32,11 @@ class MainEnv:
                         CENTER_X - ELLIPSE_WIDTH // 2, CENTER_Y - ELLIPSE_HEIGHT // 2
                     )
                 case _:
-                    x, y = next(points_iter)
-                    node.draw(x - ELLIPSE_WIDTH // 2, y - ELLIPSE_HEIGHT // 2)
+                    try:
+                        x, y = next(points_iter)
+                        node.draw(x - ELLIPSE_WIDTH // 2, y - ELLIPSE_HEIGHT // 2)
+                    except StopIteration:
+                        continue
 
     def draw(self, nodes: list[DrawableNode]) -> None:
         points = self._calculate_points(len(nodes) - 1)
@@ -50,8 +54,8 @@ class MainEnv:
         return packed_coordinates
 
     def __check_node_count(self, node_count: int) -> None:
-        if node_count < 1:
-            raise ValueError(f"node_count: {node_count} is smaller than 1") from None
+        if node_count < 0:
+            raise ValueError(f"node_count: {node_count} is smaller than 0") from None
 
     def __calculate_circle_x_values(self, node_count: int, step_degree) -> list[float]:
         results = []

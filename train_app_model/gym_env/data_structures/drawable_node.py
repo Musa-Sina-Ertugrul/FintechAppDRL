@@ -1,4 +1,5 @@
 import pygame as pg
+pg.init()
 from .node import Node
 from .node_type_n_consts import ELLIPSE_HEIGHT, ELLIPSE_WIDTH, NodeType
 
@@ -10,7 +11,7 @@ class DrawableNode(Node):
     def __init__(
         self, name: str, number: int, node_type: NodeType, id: int, surface: pg.Surface
     ) -> None:
-        super().__init__(name, number, node_type, id)
+        super().__init__(name, number, node_type, id,False)
         self.__surface = surface
         self.__pygame_text = self.font.render(self.name, False, "black", "white")
         self.__text_x, self.__text_y = self.__pygame_text.get_size()

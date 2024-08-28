@@ -33,9 +33,16 @@ class NodeType(Enum):
             case "red":
                 return -1
             case "green":
-                return 1
+                return 2
             case _:
                 raise RuntimeError(f"Wrong color has come {node.color}")
+    
+    @classmethod
+    def retrieve_bool_text(cls,node)->str:
+        
+        if node.color == "green":
+            return "TRUE"
+        return "FALSE"
 
 
 class CartesianCoordinateSections(Enum):
