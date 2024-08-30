@@ -18,15 +18,16 @@ class Scheduler:
         return self.__current_epoch
 
     def step(self) -> None:
-        self.__value = self.__decay_func()
         self.__current_epoch += 1
 
     def __float__(self):
-        return self.value
+        return self.__decay_func()
+
 
 def linear_decay(end_iter: int) -> Callable:
     last_epoch = end_iter
     base_value = None
+
     def inner_linear_decay(self: Scheduler) -> None:
         nonlocal base_value
         nonlocal last_epoch
@@ -37,6 +38,18 @@ def linear_decay(end_iter: int) -> Callable:
                 f"last epoch: {last_epoch}, current epoch {self.current_epoch}.\
                 end_iter passed line. Raise end_iter"
             ) from None
-        return self.value - self.current_epoch * base_value / last_epoch
+        return self.value - (self.current_epoch * base_value / last_epoch)
 
     return inner_linear_decay
+
+
+def exponential_decay(gamma: float) -> Callable:
+    base_value = None
+
+    def inner_exponential_decay(self: Scheduler) -> None:
+        nonlocal base_value
+        if base_value is None:
+            base_value = self.value
+        return (base_value := base_value**gamma)
+
+    return inner_exponential_decay
