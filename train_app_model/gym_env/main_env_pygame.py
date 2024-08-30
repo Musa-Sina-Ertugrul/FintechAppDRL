@@ -1,4 +1,5 @@
 import pygame as pg
+
 pg.init()
 import numpy as np
 from gym_env.data_structures import (
