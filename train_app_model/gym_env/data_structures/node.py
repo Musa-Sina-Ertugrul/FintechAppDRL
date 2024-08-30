@@ -4,7 +4,9 @@ from typing import Union
 
 class Node:
 
-    def __init__(self, name: str, number: int, node_type: EnumType, id: int,is_finish:bool) -> None:
+    def __init__(
+        self, name: str, number: int, node_type: EnumType, id: int, is_finish: bool
+    ) -> None:
         self.__name = name
         self.__id = id
         self.__children = {}
@@ -27,7 +29,7 @@ class Node:
     def parent(self):
         return str(self.__parent)
 
-    def is_child(self, node: Union["Node",str]) -> bool:
+    def is_child(self, node: Union["Node", str]) -> bool:
         children_set = set(list(self.__children.keys()))
         try:
             return node.name in children_set
@@ -37,7 +39,7 @@ class Node:
             raise e
 
     def add_child(self, node: "Node") -> "Node":
-        if self.__children.get(node.name,None) is None:
+        if self.__children.get(node.name, None) is None:
             self.__children[node.name] = node
         return self.__children[node.name]
 
@@ -63,6 +65,6 @@ class Node:
     @property
     def color(self):
         return self.__node_type.value
-    
+
     def __bool__(self):
         return self.__is_finish
